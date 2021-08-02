@@ -1,0 +1,68 @@
+<!--<div class="item-wrapper">-->
+<div class="item-body">
+
+    <div class="item-top">
+        <div class="item-img">
+            <img src="{{ getThumbImageUrl() }}">
+        </div>
+
+        <!---->
+        <div class="format-display">
+            {{ item.format }}
+        </div>
+        <div *ngIf="hasDuration"
+              class="duration-display">
+            {{ item.metadata!.duration | duration }}
+        </div>
+    </div>
+
+    <div class="item-bottom" [ngSwitch]="item.namingDisplayType">
+
+        <div class="name" *ngSwitchCase="'name'">
+            <p class="label">
+                name:
+            </p>
+            <p class="item-name">
+                {{ item.filename | maxlen:22 }}
+            </p>
+        </div>
+
+        <div class="metadata" *ngSwitchCase="'metadata'">
+            <div class="metadata-row">
+                <div class="left">
+                <span class="label">author:</span>
+                </div>
+                <div class="right">
+                <span class="text">{{ item.metadata?.author }}</span>
+                </div>
+            </div>
+            <div class="metadata-row">
+                <div class="left">
+                <span class="label">title:</span>
+                </div>
+                <div class="right">
+                <span class="text">{{ item.metadata?.title }}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="item-footer">
+
+        <div class="item-download">
+            <a 
+                href="{{ item.href }}" 
+                download="{{ item.filename }}">
+                <img src="assets/icons/download.svg" alt="Download">
+            </a>
+        </div>
+
+        <div class="item-date">
+            <span class="label">Added:</span>
+            <span class="date">10.11.2020</span>
+        </div>
+
+    </div>
+</div>
+<!--</div>-->

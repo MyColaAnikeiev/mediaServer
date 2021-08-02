@@ -1,0 +1,120 @@
+@mixin label{
+    margin: 2px 0;
+    font-size: 12px;
+    color: #1c1c1c;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.item-body{
+    width: 190px;
+    height: 205px;
+    //background-color: #404041;
+    //border: #121515 1px solid;
+    padding-top: 4px;
+    background-image: linear-gradient(43deg,#d8d5bd,#000000c7);
+
+    .item-top{
+        position: relative;
+        width: 100%;
+        height: 130px;
+        text-align: center;
+
+        img{
+            max-width: 150px;
+            max-height: 130px;
+        }
+
+        .format-display{
+            position: absolute;
+            right: 4px;
+            top: 0px;
+            background-color: #1c272d;
+            color: #dadada; 
+            border-radius: 4px;
+            padding: 0 2px;
+        }
+
+        .duration-display{
+            position: absolute;
+            left: 8px;
+            bottom: 0;
+            font-size: 12px;
+            background-color: black;
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+    }
+
+    .item-bottom{
+        padding: 2px 8px;
+
+        .name{
+
+            p.label{
+                margin: 2px 0;
+                @include label;
+            }
+
+            p.item-name{
+                text-align: center;
+                margin: 0;
+                padding: 2px 5px;
+                background-color: rgb(44, 44, 44);
+                font-size: 15px;
+            }
+        }
+
+        .metadata{
+            .metadata-row{
+                clear: both;
+                padding-bottom: 10px;
+
+                .left{
+                    width: 29%;
+                    float: left;
+
+                    span.label{
+                        @include label;
+                    }
+                }
+                .right{
+                    width: 71%;
+                    float: right;
+                    box-sizing: border-box;
+                    padding: 0 0 0 4px;
+                    background-color:#2e3030;;
+
+                    span.text{
+                        font-size: 13px;;
+                    }
+                }
+            }
+        }
+    }
+
+    .item-footer{
+        clear:both;
+
+        padding: 1px 8px;
+        .item-download{
+            float: left;
+
+            img{
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .item-date{
+            float: right;
+
+            .label{
+                @include label
+            }
+            .date{
+                font-size: 14px;
+            }
+            
+        }
+    }
+}

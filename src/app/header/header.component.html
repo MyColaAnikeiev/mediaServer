@@ -1,0 +1,21 @@
+<header>
+    <div class="container">
+        <div class="panel">
+            <div class="menu-item" *ngFor="let route of mainRoutes">
+                <img 
+                    src="{{ route.imgSrc }}" 
+                    routerLink="{{ route.link }}"    
+                    routerLinkActive="active"
+                >
+            </div>
+        </div>
+        
+        <hr class="upper-decorator">
+        <div class="user-block-container">
+            <p>Hi guest!</p>
+            <button>LogIn</button> <button>signUp</button>
+        </div>
+        <hr class="lower-decorator">
+
+    </div>
+</header>

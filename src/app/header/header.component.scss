@@ -1,0 +1,109 @@
+header{
+    padding-top: 5px;
+
+    .container{
+
+        .panel{ 
+            text-align: center;
+            background-image: linear-gradient(to right, #0000 0%,rgba(101, 87, 111, 0.12) 30%,rgba(85, 169, 169, 0.4),rgba(101, 87, 111, 0.12) 80%, #0000 90%);
+            border-radius: 5px 5px 5px 1px;
+            padding-top: 6px;
+
+            .menu-item{
+                display: inline;
+                padding: 2px;
+                cursor: pointer;
+
+                img{
+                    width: 58px;
+                    height: 58px;
+                    border:transparent 2px solid;
+                }
+                img.active{
+                    border:rgba(168, 219, 172, 0.192) 2px solid;
+                }
+                &:first-child img.active{
+                    border-color:transparent;
+                }
+
+            }
+
+            .menu-item:hover{
+                img{
+                    transform: scale(1.1,1.1);
+                }
+            }
+        }
+    }
+
+    .user-block-container{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 3px 5px 10px 4px;
+        background-image: linear-gradient(rgba(72, 100, 105, 0.21), #000);
+        border-radius: 5px 5px 5px 1px;
+
+        p{
+            margin: 2px 4px;
+            font-size: 14px; 
+        }
+
+        button{
+            cursor: pointer;
+            background-color: #252525;
+            border: #5a474785 1px solid;
+            margin: 0 4px;
+            color: #a9b360;
+            padding: 3px 6px;
+            font-size: 16px;
+            border-radius: 3px;
+            box-shadow: #56813f 2px 2px 4px;
+        }
+        button:hover{
+            background-color: #000;
+            color: #e84141;
+            box-shadow: #6f9ac7 2px 2px 7px;
+        }
+    }
+
+    hr{
+        display: none;
+    }
+}
+
+@media all and (max-width: 745px){
+    header{
+
+        .user-block-container{
+            position: static;
+            padding-bottom: 7px;
+            max-width: 300px;
+            margin: 0px auto;
+            background-image: none;
+
+            p{
+                display: inline;
+                font-size: 18px;
+            }
+
+            button{
+                padding: 4px 8px;
+                font-size: 20px;
+            }
+        }
+
+        hr{
+            margin: 5px -8px;
+            display: block;
+            color:rgb(75, 75, 75)
+        }
+        hr.upper-decorator{
+            margin-bottom: 2px;
+        }
+        hr.lower-decorator{
+            margin-top: 2px;
+        }
+    }
+
+}

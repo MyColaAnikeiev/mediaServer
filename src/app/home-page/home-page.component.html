@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+    
+    <div class="search-panel">
+            <div *ngIf="searchOn" class="search-form">
+                <div class="search-form-row">
+                    <div class="name-field">name: <input type="text"></div>
+                    <div class="type-field">
+                        <div class="label">type: </div>
+                        <select type="text">
+                            <option>video</option>
+                        </select>
+                    </div>
+                    <div class="format-field">
+                        <div class="label">format: </div>
+                        <select type="text">
+                            <option>video</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="page-navigation"></div>
+
+            <div class="quick-info">Lastly Added</div>
+            <div 
+                class="search-btn"
+                [class.active]="searchOn" 
+                (click)="searchOn=!searchOn"
+                >Search
+            </div>
+            <div class="search-btn-small"
+                 [class.active]="searchOn"
+                 (click)="searchOn=!searchOn"
+            >
+            </div>
+    </div>
+
+    <div class="content-container">
+        <app-home-media-item *ngFor="let item of items" [item]="item"></app-home-media-item>
+    </div>
+</div>
