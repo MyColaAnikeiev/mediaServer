@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
       imgSrc : "assets/header_icons/home.png" 
     },
     {
-      link: "videos",
+      link: "videos/raw",
       imgSrc: "assets/header_icons/video.svg" 
     },
     {

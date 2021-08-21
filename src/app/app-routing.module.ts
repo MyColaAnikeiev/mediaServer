@@ -5,6 +5,8 @@ import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MusicPageComponent } from './music-page/music-page.component';
 import { OtherPageComponent } from './other-page/other-page.component';
+import { VideosPageCollectionsTabComponent } from './videos-page-collections-tab/videos-page-collections-tab.component';
+import { VideosPageRawTabComponent } from './videos-page-raw-tab/videos-page-raw-tab.component';
 import { VideosPageComponent } from './videos-page/videos-page.component';
 
 const routes: Routes = [
@@ -15,7 +17,17 @@ const routes: Routes = [
   },
   {
     path: "videos",
-    component: VideosPageComponent
+    component: VideosPageComponent,
+    children: [
+      {
+        path: "raw",
+        component: VideosPageRawTabComponent
+      },
+      {
+        path: "collections",
+        component: VideosPageCollectionsTabComponent
+      }
+    ]
   },
   {
     path: "music",

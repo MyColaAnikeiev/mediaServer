@@ -8,6 +8,9 @@ import { HomeMediaItemComponent } from './home-media-item/home-media-item.compon
 import { MaxlenPipe } from './maxlen.pipe';
 import { DurationPipe } from './duration.pipe';
 import { PageNavigationComponent } from './page-navigation/page-navigation.component';
+import { VideosPageContentComponent } from './videos-page-content/videos-page-content.component';
+import { VideosPageRawTabComponent } from './videos-page-raw-tab/videos-page-raw-tab.component';
+import { VideosPageCollectionsTabComponent } from './videos-page-collections-tab/videos-page-collections-tab.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { PageNavigationComponent } from './page-navigation/page-navigation.compo
     HomeMediaItemComponent,
     MaxlenPipe,
     DurationPipe,
-    PageNavigationComponent
+    PageNavigationComponent,
+    VideosPageContentComponent,
+    VideosPageRawTabComponent,
+    VideosPageCollectionsTabComponent
   ],
   imports: [
     BrowserModule,
