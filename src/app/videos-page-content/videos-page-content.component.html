@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="container">
+        
+        <div *ngFor="let video of videos"
+             class="video-item-wrapper"
+        >
+            <div class="thumb">
+                <img src="{{ video.thumbImg }}" alt="{{ video.filename }}">
+                <div class="mask">
+                    
+                </div>
+            </div>
+            <div class="text">
+                <div *ngIf="video.title; else elseBlock">
+                    Title
+                </div>
+                <ng-template #elseBlock>
+                    <div>
+                        Filename
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -8,7 +8,7 @@ import { Item } from '../itemInterface';
 })
 export class HomePageComponent implements OnInit {
 
-  searchOn = true;
+  searchOn = false;
 
   items: Item[] = [
     {
