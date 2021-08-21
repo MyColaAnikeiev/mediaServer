@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChange, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange, HostListener, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: '.page-navigation',
@@ -8,22 +8,23 @@ import { Component, OnInit, Input, SimpleChange, HostListener, ElementRef } from
 export class PageNavigationComponent implements OnInit {
 
   @Input('pages') numOfPages = 19;
-  currentPage = 1;
+  @Input() padding = 10;
+  @Input()  currentPage = 1;
+  @Output() currentPageChange = new EventEmitter<number>();
   maxDisplayedPages = 12;
   pages: number[] = [];
   onResizeFunction!: Function;
 
 
   constructor(private element: ElementRef) {
-    window.addEventListener('resize',<any>this.getResizeHandler());
   }
 
   ngOnChange(ch: SimpleChange){
-    console.log(ch);
   }
 
   ngOnInit(): void {
     this.getResizeHandler()();
+    window.addEventListener('resize',<any>this.getResizeHandler());
   }
 
   ngOnDestroy(){
@@ -35,7 +36,7 @@ export class PageNavigationComponent implements OnInit {
     if(!this.onResizeFunction){
       this.onResizeFunction = () : any => {
         const pageBtnInterval = 30 + 4;
-        const padding = 300;
+        const padding = this.padding;
         let {width} = this.element.nativeElement.getBoundingClientRect();
         let fited = Math.floor((width - padding) / pageBtnInterval);
 
@@ -50,11 +51,12 @@ export class PageNavigationComponent implements OnInit {
   }
 
   selectPage(pNum: number){
-    if(pNum < 1)
+    if(pNum < 1 || pNum == this.currentPage)
       return;
 
     this.currentPage = pNum;
     this.placePages();
+    this.currentPageChange.emit(pNum);
   }
 
   placePages(){

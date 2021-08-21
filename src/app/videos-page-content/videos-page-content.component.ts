@@ -9,6 +9,7 @@ import { VideosI } from '../videos-interface';
 export class VideosPageContentComponent implements OnInit {
 
   @Input('videos') videos: VideosI[] = [];
+  currentPage = 1;
 
   constructor() { }
 

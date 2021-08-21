@@ -1,4 +1,9 @@
 <div class="wrapper">
+
+    <div class="navigation-upper">
+        <div class="page-navigation" [(currentPage)]="currentPage"></div>
+    </div>
+
     <div class="container">
         
         <div *ngFor="let video of videos"
@@ -22,5 +27,9 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="navigation-bottom">
+        <div class="page-navigation" [(currentPage)]="currentPage"></div>
     </div>
 </div>
