@@ -1,0 +1,56 @@
+.search-form{
+    padding: 3px 10px 0 10px;
+
+    .search-form-row{
+        display: flex;                
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+        & > * {
+            display: flex;
+            padding: 5px 4px;
+
+            .label{
+                display: flex;
+                align-items: flex-end;
+                flex-grow: 0.0;    
+                padding-right: 5px;        
+            }
+        }
+
+
+        .name-field{
+            flex-grow: 0.4;
+            flex-flow: wrap;
+            padding-right: 5px;
+
+            input{
+                border: lightgray 1px solid;
+                background-color: #393737;
+                font-size: 17px;
+                padding: 2px 2px;
+                color: white;
+            }
+        }
+
+        .type-field, .format-field{
+            flex-grow: 0.0;
+            padding: 5px 18px 5px 5px;
+            justify-content: space-between;
+
+            .label{
+                min-width: 72px;
+            }
+
+            select{
+                width: 65px;
+                height: 30px;
+                align-self: flex-end;
+            }
+        }
+    }
+
+    hr{
+        color:#3b3b3b;
+    }
+}
