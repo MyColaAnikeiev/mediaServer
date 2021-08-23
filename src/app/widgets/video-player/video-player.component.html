@@ -1,0 +1,21 @@
+<div #mask class="back-mask" [class.hidden]="!visible">
+
+        <img (click)="previous()" 
+            src="assets/icons/angle-left.svg" 
+            alt="Previous" 
+            class="left-arrow"
+        >
+
+        <div class="player-container">
+            <video #player controls autoplay [src]="videoSrc">
+                <source [src]="videoSrc" [type]="videoType">
+            </video>
+        </div>
+
+        <img (click)="next()" 
+            src="assets/icons/angle-right.svg" 
+            alt="Next" 
+            class="right-arrow"
+        >
+
+</div>

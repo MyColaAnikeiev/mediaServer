@@ -1,0 +1,42 @@
+@mixin pageBtnBox{
+    width: 30px;
+    margin: 2px;
+    padding: 3px 0px;
+    text-align: center;
+}
+@mixin pageBtnBoxBigger{
+    width: 35px;
+    margin: 2px;
+    font-size: 20px;
+    padding: 7px 0px;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
+
+    .page{
+        @include pageBtnBox;
+        background-color: blueviolet;
+        color: #bfdba3;
+        background-image: linear-gradient(0,#131111,#676856);
+        cursor: pointer;
+    }
+
+    .page.active{
+        color: #e6e5e5;
+        background-image: linear-gradient(0, #c8bdbd, #4b4c3a);
+    }
+
+    .triple{
+        @include pageBtnBox;
+    }
+}
+
+@media all and (max-width: 745px){
+    .pages{
+        .page{
+            @include pageBtnBoxBigger;
+        }
+    }
+}

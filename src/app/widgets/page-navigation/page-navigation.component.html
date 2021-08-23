@@ -1,0 +1,17 @@
+<div class="pages">
+
+    <div 
+        *ngFor="let page of pages"
+        [class.page]="page"
+        [class.triple]="!page"
+        [class.active]="page == currentPage"
+        (click)="selectPage(page)" 
+    >
+        <span *ngIf="page; else elseBlock">
+            {{ page }}
+        </span>
+        <ng-template #elseBlock>
+            <span>...</span>
+        </ng-template>
+    </div>
+</div>
