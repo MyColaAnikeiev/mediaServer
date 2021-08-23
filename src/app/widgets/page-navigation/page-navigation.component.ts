@@ -25,32 +25,20 @@ export class PageNavigationComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.getResizeHandler()();
-    window.addEventListener('resize',<any>this.getResizeHandler());
-  }
+  @HostListener('window:resize') windowResize(){
+    const pageBtnInterval = 30 + 4;
+    const padding = this.padding;
+    let {width} = this.element.nativeElement.getBoundingClientRect();
+    let fited = Math.floor((width - padding) / pageBtnInterval);
 
-  ngOnDestroy(){
-    window.removeEventListener('resize', <any>this.getResizeHandler());
-  }
-
-  
-  getResizeHandler(){
-    if(!this.onResizeFunction){
-      this.onResizeFunction = () : any => {
-        const pageBtnInterval = 30 + 4;
-        const padding = this.padding;
-        let {width} = this.element.nativeElement.getBoundingClientRect();
-        let fited = Math.floor((width - padding) / pageBtnInterval);
-
-        if(fited != this.maxDisplayedPages){
-          this.maxDisplayedPages = fited;
-          this.placePages();
-        }
-      }
+    if(fited != this.maxDisplayedPages){
+      this.maxDisplayedPages = fited;
+      this.placePages();
     }
+  }
 
-    return this.onResizeFunction;
+  ngOnInit(): void {
+    this.windowResize();
   }
 
   selectPage(pNum: number){
