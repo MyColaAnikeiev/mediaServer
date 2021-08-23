@@ -7,6 +7,7 @@
         position: relative;
         $info-width: 120px;
         $search-btn-width: 100px;
+        min-height: 32px;
         border: #2b2d0a 1px solid;
         background-color: #222525;
         padding: 2px 0;
@@ -75,6 +76,7 @@
 
         .page-navigation{
             width: 100%;
+            min-height: 32px;
         }
 
         .quick-info{

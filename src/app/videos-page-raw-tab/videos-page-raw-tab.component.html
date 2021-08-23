@@ -4,4 +4,22 @@
     </div>
 </div>
 
-<app-videos-page-content [videos]="videos"></app-videos-page-content>
+<div class="navigation-upper">
+    <div class="page-navigation" 
+        [(currentPage)]="currentPage" 
+        (currentPageChange)="pageChange($event)"
+        [pages]="numOfPages"
+    ></div>
+</div>
+
+<app-videos-page-content 
+    [videos]="videos"
+></app-videos-page-content>
+
+<div class="navigation-bottom">
+    <div class="page-navigation" 
+        [(currentPage)]="currentPage" 
+        (currentPageChange)="pageChange($event)"
+        [pages]="numOfPages"
+    ></div>
+</div>

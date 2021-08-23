@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { VideosI } from '../videos-interface';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { VideoI } from '../videos-interface';
+import { VideoPlayerComponent } from '../widgets/video-player/video-player.component';
 
 @Component({
   selector: 'app-videos-page-content',
@@ -8,12 +9,15 @@ import { VideosI } from '../videos-interface';
 })
 export class VideosPageContentComponent implements OnInit {
 
-  @Input('videos') videos: VideosI[] = [];
-  currentPage = 1;
+  @Input('videos')          videos: VideoI[] = [];
+  @ViewChild('videoPlayer') player!: VideoPlayerComponent;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showPlayer(video: VideoI){
+    this.player.play(video);
+  }
 }

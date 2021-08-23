@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subscribable, Subscription } from 'rxjs';
+import { GeneralDataI } from '../dataTypes/ServiceDataInterfaces';
 import { Item } from '../itemInterface';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,77 +12,50 @@ import { Item } from '../itemInterface';
 export class HomePageComponent implements OnInit {
 
   searchOn = false;
+  items: Item[] = [];
 
-  items: Item[] = [
-    {
-      filetype: "music",
-      format: "mp3",
-      filename: "Ringtone.mp3",
-      namingDisplayType: "name",
-      date: "04.09.2021",
-      thumbImg: '',
-      href: '',
-      metadata: null
-    },
-    {
-      filetype: "image",
-      format: "jpg",
-      filename: "grapefruit-slice.jpg",
-      namingDisplayType: "name",
-      date: "18.10.2020",
-      thumbImg: 'assets/thumbs/grapefruit-slice.jpg',
-      href: 'assets/thumbs/grapefruit-slice.jpg',
-      metadata: null
-    },
-    {
-      filetype: "music",
-      format: "mp3",
-      filename: "filename",
-      namingDisplayType: "metadata",
-      date: "10.11.2021",
-      thumbImg: '',
-      href: '',
-      metadata: {
-        author: "Joan Roling",
-        title: "Harry Potter",
-        duration: 201
-      }
-    },
-    {
-      filetype: "music",
-      format: "mp3",
-      filename: "filename",
-      namingDisplayType: "name",
-      date: "10.11.2021",
-      thumbImg: '',
-      href: '',
-      metadata: null
-    },
-    {
-      filetype: "music",
-      format: "mp3",
-      filename: "filename",
-      namingDisplayType: "name",
-      date: "10.11.2021",
-      thumbImg: '',
-      href: '',
-      metadata: null
-    },
-    {
-      filetype: "music",
-      format: "mp3",
-      filename: "filename",
-      namingDisplayType: "name",
-      date: "10.11.2021",
-      thumbImg: '',
-      href: '',
-      metadata: null
-    }
-  ];
+  currentPage = 0;
+  numOfPages: number = 0;
+  dataHandler!: {next: Function};
+  subscription!: Subscription;
 
-  constructor() { }
+  constructor(private server: ServerService) { }
 
   ngOnInit(): void {
+    this.subscription = this.server.getAll()
+      .subscribe(<any>this.getDataHendlers());
+  }
+
+  getDataHendlers(){
+    if(!this.dataHandler){
+      this.dataHandler = {
+        next: (response: GeneralDataI) => {
+          this.numOfPages = response.pages;
+          this.items = response.data;
+        }
+      }
+    }
+
+    return this.dataHandler;
+  }
+
+  pageChange(page: number){
+    if(page == this.currentPage) 
+      return;
+
+    if(page > this.numOfPages) page = this.numOfPages;
+    if(page < 0) page = 0;
+
+    this.currentPage = page;
+
+    this.subscription.unsubscribe();
+    this.subscription =  this.server.getAll(page - 1)
+      .subscribe(<any>this.getDataHendlers());
+
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 }

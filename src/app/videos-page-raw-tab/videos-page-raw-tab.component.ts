@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { VideosI } from '../videos-interface';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Observable } from 'rxjs';
+import { VideoDataI } from '../dataTypes/ServiceDataInterfaces';
+import { ServerService } from '../server.service';
+import { VideoI } from '../videos-interface';
 
 @Component({
   selector: 'app-videos-page-raw-tab',
@@ -8,42 +11,43 @@ import { VideosI } from '../videos-interface';
 })
 export class VideosPageRawTabComponent implements OnInit {
 
-  videos: VideosI[] = [
-    {
-      filename: "procofiev.mp4",
-      title: "Prokofiev - Dance of a Knights",
-      thumbImg: "assets/thumbs/procofiev.jpg",
-      src: ""
-    },
-    {
-      filename: "video.mp4",
-      title: "My Video",
-      thumbImg: "assets/thumbs/video.jpg",
-      src: ""
-    },
-    {
-      filename: "video.mp4",
-      title: "",
-      thumbImg: "assets/thumbs/video.jpg",
-      src: ""
-    },
-    {
-      filename: "video.mp4",
-      title: "My Video",
-      thumbImg: "assets/thumbs/video.jpg",
-      src: ""
-    },
-    {
-      filename: "video.mp4",
-      title: "My Video",
-      thumbImg: "assets/thumbs/video.jpg",
-      src: ""
-    }
-  ];
+  videos: VideoI[] = [];
+  videosStream!: Observable<VideoDataI>;
+  numOfPages: number = 0;
+  itemsPerPage: number = 6;
+  currentPage = 1;
+  dataHandler!: {next: Function};
 
-  constructor() { }
+  constructor(private server: ServerService) { }
 
   ngOnInit(): void {
+    this.videosStream = this.server.getVideos();
+    this.videosStream.subscribe(<any>this.getDataHandler())
+  }
+
+  pageChange(pageNum: number){
+    if(pageNum > this.numOfPages)
+      pageNum = this.numOfPages;
+    
+    this.server.getVideos(pageNum - 1).subscribe(<any>this.getDataHandler());
+  }
+
+  getDataHandler(){
+    if(!this.dataHandler){
+      this.dataHandler = {
+        next: (response: VideoDataI) => {
+          this.numOfPages = response.pages;
+          this.videos = response.data;
+        }
+      }
+    }
+
+    return this.dataHandler
+  }
+  
+  
+  ngOnDestroy(){
+    
   }
 
 }

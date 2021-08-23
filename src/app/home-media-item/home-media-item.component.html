@@ -33,7 +33,7 @@
                 <span class="label">author:</span>
                 </div>
                 <div class="right">
-                <span class="text">{{ item.metadata?.author }}</span>
+                <span class="text">{{ item.metadata?.author | maxlen:16 }}</span>
                 </div>
             </div>
             <div class="metadata-row">
@@ -41,7 +41,7 @@
                 <span class="label">title:</span>
                 </div>
                 <div class="right">
-                <span class="text">{{ item.metadata?.title }}</span>
+                <span class="text">{{ item.metadata?.title | maxlen:16 }}</span>
                 </div>
             </div>
         </div>

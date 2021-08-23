@@ -1,4 +1,4 @@
-export interface VideosI {
+export interface VideoI {
     filename: string;
     title: string,
     thumbImg: string,

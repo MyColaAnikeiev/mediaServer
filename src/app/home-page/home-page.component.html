@@ -22,7 +22,12 @@
                 </div>
                 <hr>
             </div>
-            <div class="page-navigation" [padding]="300"></div>
+
+            <div class="page-navigation" 
+                [padding]="300" 
+                [pages]="numOfPages"
+                (currentPageChange)="pageChange($event)"
+            ></div>
 
             <div class="quick-info">Lastly Added</div>
             <div 

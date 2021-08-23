@@ -5,8 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MaxlenPipe implements PipeTransform {
 
-  transform(name: string, ...args: number[]): string {
+  transform(name: string | undefined, ...args: number[]): string {
     const maxLen = args.length ? args[0] : 16;
+    
+    if(name === undefined){
+      return '';
+    }
 
     if(name.length <= maxLen)
       return name;
