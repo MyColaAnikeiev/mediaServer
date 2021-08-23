@@ -8,8 +8,6 @@
 .item-body{
     width: 190px;
     height: 205px;
-    //background-color: #404041;
-    //border: #121515 1px solid;
     padding-top: 4px;
     background-image: linear-gradient(43deg,#d8d5bd,#000000c7);
 
@@ -19,9 +17,16 @@
         height: 130px;
         text-align: center;
 
-        img{
-            max-width: 150px;
-            max-height: 130px;
+        .item-img{
+            width: 190px;
+            height: 135px;
+            display: flex;
+            justify-content: center;
+
+            img{
+                max-width: 190px;
+                max-height: 135px;
+            }
         }
 
         .format-display{
