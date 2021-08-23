@@ -1,13 +1,13 @@
 <!--<div class="item-wrapper">-->
 <div class="item-body">
 
-    <div class="item-top">
+    <div class="item-top" [class.thumbImage]="!thumbImageIsIcon()">
         <div class="item-img">
             <img src="{{ getThumbImageUrl() }}">
         </div>
 
         <!---->
-        <div class="format-display">
+        <div class="format-display" (click)="searchByItemFormat()">
             {{ item.format }}
         </div>
         <div *ngIf="hasDuration"

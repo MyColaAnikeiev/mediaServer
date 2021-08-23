@@ -20,7 +20,7 @@ export class PageNavigationComponent implements OnInit {
   }
 
   ngOnChanges(ch: SimpleChange){
-    if('currentPage' in ch){
+    if('currentPage' in ch || 'numOfPages' in ch){
       this.placePages();
     }
   }

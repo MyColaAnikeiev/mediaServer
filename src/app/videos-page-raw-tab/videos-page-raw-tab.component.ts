@@ -1,5 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { VideoDataI } from '../dataTypes/ServiceDataInterfaces';
 import { ServerService } from '../server.service';
 import { VideoI } from '../videos-interface';
@@ -12,7 +12,7 @@ import { VideoI } from '../videos-interface';
 export class VideosPageRawTabComponent implements OnInit {
 
   videos: VideoI[] = [];
-  videosStream!: Observable<VideoDataI>;
+  subscription!: Subscription;
   numOfPages: number = 0;
   itemsPerPage: number = 6;
   currentPage = 1;
@@ -21,15 +21,17 @@ export class VideosPageRawTabComponent implements OnInit {
   constructor(private server: ServerService) { }
 
   ngOnInit(): void {
-    this.videosStream = this.server.getVideos();
-    this.videosStream.subscribe(<any>this.getDataHandler())
+    this.subscription = this.server.getVideos()
+      .subscribe(<any>this.getDataHandler())
   }
 
   pageChange(pageNum: number){
     if(pageNum > this.numOfPages)
       pageNum = this.numOfPages;
     
-    this.server.getVideos(pageNum - 1).subscribe(<any>this.getDataHandler());
+    this.subscription.unsubscribe();
+    this.subscription = this.server.getVideos(pageNum - 1)
+      .subscribe(<any>this.getDataHandler());
   }
 
   getDataHandler(){
@@ -42,12 +44,12 @@ export class VideosPageRawTabComponent implements OnInit {
       }
     }
 
-    return this.dataHandler
+    return this.dataHandler;
   }
   
   
   ngOnDestroy(){
-    
+    this.subscription.unsubscribe();
   }
 
 }

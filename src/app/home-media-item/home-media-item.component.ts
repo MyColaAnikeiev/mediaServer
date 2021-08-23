@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Item } from '../itemInterface';
 
 @Component({
@@ -8,6 +8,7 @@ import { Item } from '../itemInterface';
 })
 export class HomeMediaItemComponent implements OnInit {
 
+  @Output('clickedFormat') formatEmiter = new EventEmitter(); 
   @Input() item!: Item;
   hasDuration = false;
 
@@ -29,5 +30,18 @@ export class HomeMediaItemComponent implements OnInit {
     return '';
   }
 
+  thumbImageIsIcon(): boolean{
+    switch(this.item.filetype){
+      case 'music':
+        return true;
+      case 'image':
+      case 'video':
+        return false;
+    }
+    return true;
+  }
 
+  searchByItemFormat(){
+    this.formatEmiter.emit(this.item);
+  }
 }

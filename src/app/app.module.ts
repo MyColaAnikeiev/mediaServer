@@ -12,6 +12,8 @@ import { VideosPageContentComponent } from './videos-page-content/videos-page-co
 import { VideosPageRawTabComponent } from './videos-page-raw-tab/videos-page-raw-tab.component';
 import { VideosPageCollectionsTabComponent } from './videos-page-collections-tab/videos-page-collections-tab.component';
 import { VideoPlayerComponent } from './widgets/video-player/video-player.component';
+import { HomeSearchFilterComponent } from './home-page/home-search-filter/home-search-filter.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,11 +28,13 @@ import { VideoPlayerComponent } from './widgets/video-player/video-player.compon
     VideosPageContentComponent,
     VideosPageRawTabComponent,
     VideosPageCollectionsTabComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    HomeSearchFilterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
