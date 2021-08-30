@@ -1,4 +1,4 @@
-import { Item } from "../itemInterface";
+import { Item } from "./itemInterface";
 import { VideoI } from "./videos-interface";
 
 

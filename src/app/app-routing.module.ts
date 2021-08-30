@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DocumentPageComponent } from './document-page/document-page.component';
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { MusicPageComponent } from './music-page/music-page.component';
 import { OtherPageComponent } from './other-page/other-page.component';
 
@@ -10,7 +9,7 @@ const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    component: HomePageComponent
+    redirectTo: 'home'
   },
   {
     path: "videos",
@@ -31,6 +30,10 @@ const routes: Routes = [
   {
     path: "other",
     component: OtherPageComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 ];
 
@@ -42,7 +45,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routeComponents = [
-  HomePageComponent,
   MusicPageComponent,
   GalleryPageComponent,
   DocumentPageComponent,

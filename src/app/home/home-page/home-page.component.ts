@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscribable, Subscription } from 'rxjs';
-import { GeneralFilterI } from '../dataTypes/ServerServiceFilterInterfaces';
-import { GeneralDataI } from '../dataTypes/ServiceDataInterfaces';
-import { Item } from '../itemInterface';
-import { ServerService } from '../server.service';
+import { GeneralFilterI } from '../../dataTypes/ServerServiceFilterInterfaces';
+import { GeneralDataI } from '../../dataTypes/ServiceDataInterfaces';
+import { Item } from '../../dataTypes/itemInterface';
+import { ServerService } from '../../server.service';
 
 @Component({
   selector: 'app-home-page',

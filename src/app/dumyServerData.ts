@@ -1,4 +1,4 @@
-import { Item } from "./itemInterface";
+import { Item } from "./dataTypes/itemInterface";
 
 export let dummyData: Item[] = [
     {
