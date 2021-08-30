@@ -1,5 +1,4 @@
 import { Item } from "./itemInterface";
-import { VideoI } from "./videos-interface";
 
 export let dummyData: Item[] = [
     {

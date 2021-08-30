@@ -1,5 +1,5 @@
 import { Item } from "../itemInterface";
-import { VideoI } from "../videos-interface";
+import { VideoI } from "./videos-interface";
 
 
 // Observable types as returned by ServerService

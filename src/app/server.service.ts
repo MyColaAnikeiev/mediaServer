@@ -4,7 +4,7 @@ import { delay, map } from 'rxjs/operators'
 import { GeneralFilterI } from './dataTypes/ServerServiceFilterInterfaces';
 import { GeneralDataI, VideoDataI } from './dataTypes/ServiceDataInterfaces';
 import { dummyData } from './dumyServerData';
-import { VideoI } from './videos-interface';
+import { VideoI } from './dataTypes/videos-interface';
 
 
 @Injectable({
