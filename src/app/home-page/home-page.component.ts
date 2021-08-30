@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit {
   $filterStreamSubscription!: Subscription;
   currentFilter: GeneralFilterI = {name:'',type:'',format:''};
 
-  currentPage = 0;
+  currentPage = 1;
   numOfPages: number = 0;
   dataHandler!: {next: Function};
   subscription!: Subscription;
@@ -85,6 +85,7 @@ export class HomePageComponent implements OnInit {
     }
 
     this.searchOn = true;
+    this.currentPage = 1;
     this.pageChange(1);
   }
 
