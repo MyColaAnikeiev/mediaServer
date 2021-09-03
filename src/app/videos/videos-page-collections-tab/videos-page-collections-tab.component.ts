@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { VideoCollectionsDataI } from 'src/app/dataTypes/ServiceDataInterfaces';
-import { ServerService } from 'src/app/server.service';
+import { VideoCollectionsDataI } from 'src/app/shared/interfaces/ServiceDataInterfaces';
+import { ServerService } from 'src/app/shared/services/server.service'
 import { VideoPlayerComponent } from 'src/app/shared/widgets/video-player/video-player.component';
 
 @Component({

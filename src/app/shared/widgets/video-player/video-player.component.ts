@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { VideoI } from 'src/app/dataTypes/videos-interface';
+import { VideoI } from 'src/app/shared/interfaces/videos-interface';
 
 @Component({
   selector: '.video-player',

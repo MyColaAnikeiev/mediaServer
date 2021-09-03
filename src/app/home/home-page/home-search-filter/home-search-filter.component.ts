@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { debounceTime, delay, distinct } from 'rxjs/operators';
-import { GeneralFilterI } from 'src/app/dataTypes/ServerServiceFilterInterfaces';
+import { GeneralFilterI } from 'src/app/shared/interfaces/ServerServiceFilterInterfaces';
 import { formatTypeTree } from 'src/app/formatTypeTree';
 import { EventEmitter } from '@angular/core';
 

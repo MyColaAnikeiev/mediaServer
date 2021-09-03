@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { VideoI } from '../../dataTypes/videos-interface';
-import { VideoPlayerComponent } from '../../shared/widgets/video-player/video-player.component';
+import { VideoI } from 'src/app/shared/interfaces/videos-interface';
+import { VideoPlayerComponent } from 'src/app/shared/widgets/video-player/video-player.component';
 
 @Component({
   selector: 'app-videos-page-raw-content',

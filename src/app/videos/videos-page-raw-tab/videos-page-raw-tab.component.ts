@@ -1,8 +1,8 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { VideoDataI } from '../../dataTypes/ServiceDataInterfaces';
-import { ServerService } from '../../server.service';
-import { VideoI } from '../../dataTypes/videos-interface';
+import { VideoDataI } from 'src/app/shared/interfaces/ServiceDataInterfaces';
+import { ServerService } from 'src/app/shared/services/server.service';
+import { VideoI } from 'src/app/shared/interfaces/videos-interface';
 
 @Component({
   selector: 'app-videos-page-raw-tab',

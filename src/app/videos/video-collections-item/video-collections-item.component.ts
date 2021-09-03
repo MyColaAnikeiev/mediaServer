@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { VideoCollectionI } from 'src/app/dataTypes/video-collection-interface';
+import { VideoCollectionI } from 'src/app/shared/interfaces/video-collection-interface';
 
 @Component({
   selector: 'app-video-collections-item',

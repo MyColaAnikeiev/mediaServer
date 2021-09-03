@@ -1,6 +1,6 @@
-import { Item } from "./dataTypes/itemInterface";
-import { VideoCollectionI } from "./dataTypes/video-collection-interface";
-import { VideoI } from "./dataTypes/videos-interface";
+import { Item } from "./shared/interfaces/itemInterface";
+import { VideoCollectionI } from "./shared/interfaces/video-collection-interface";
+import { VideoI } from "./shared/interfaces/videos-interface";
 
 export let dummyData: Item[] = [
     {

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators'
-import { GeneralFilterI } from './dataTypes/ServerServiceFilterInterfaces';
-import { GeneralDataI, VideoCollectionsDataI, VideoDataI } from './dataTypes/ServiceDataInterfaces';
-import { dummyData, dummyVideoCollections } from './dumyServerData';
-import { VideoI } from './dataTypes/videos-interface';
+import { GeneralFilterI } from '../interfaces/ServerServiceFilterInterfaces';
+import { GeneralDataI, VideoCollectionsDataI, VideoDataI } from '../interfaces/ServiceDataInterfaces';
+import { dummyData, dummyVideoCollections } from '../../dumyServerData';
+import { VideoI } from '../interfaces/videos-interface';
 
 
 @Injectable({

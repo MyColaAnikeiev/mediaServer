@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Item } from '../../dataTypes/itemInterface';
+import { Item } from '../../shared/interfaces/itemInterface';
 
 @Component({
   selector: 'app-home-media-item',
