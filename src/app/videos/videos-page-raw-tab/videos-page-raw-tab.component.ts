@@ -1,5 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { VideoDataI } from 'src/app/shared/interfaces/ServiceDataInterfaces';
 import { ServerService } from 'src/app/shared/services/server.service';
 import { VideoI } from 'src/app/shared/interfaces/videos-interface';
