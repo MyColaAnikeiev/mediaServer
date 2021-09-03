@@ -3,9 +3,9 @@ import { VideoI } from '../../dataTypes/videos-interface';
 import { VideoPlayerComponent } from '../../shared/widgets/video-player/video-player.component';
 
 @Component({
-  selector: 'app-videos-page-content',
-  templateUrl: './videos-page-content.component.html',
-  styleUrls: ['./videos-page-content.component.scss']
+  selector: 'app-videos-page-raw-content',
+  templateUrl: './videos-page-raw-content.component.html',
+  styleUrls: ['./videos-page-raw-content.component.scss']
 })
 export class VideosPageContentComponent implements OnInit {
 

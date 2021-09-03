@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { DocumentPageComponent } from './document-page/document-page.component';
-import { GalleryPageComponent } from './gallery-page/gallery-page.component';
-import { MusicPageComponent } from './music-page/music-page.component';
-import { OtherPageComponent } from './other-page/other-page.component';
+import { DocumentPageComponent } from './documets/document-page/document-page.component';
+import { GalleryPageComponent } from './gallery/gallery-page/gallery-page.component';
+import { MusicPageComponent } from './music/music-page/music-page.component';
+import { OtherPageComponent } from './other/other-page/other-page.component';
 
 const routes: Routes = [
   {

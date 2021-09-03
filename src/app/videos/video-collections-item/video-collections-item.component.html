@@ -1,0 +1,33 @@
+<div class="item-container">
+
+    <div class="details">
+        <div class="title">
+            <h3>{{ collection.title }}</h3>
+        </div>
+        <div class="number">
+            <span class="label">videos:</span> 
+            <span> {{ collection.number }} </span>
+        </div>
+        <div class="author">
+            <div class="label">owner:</div> 
+            <div class="username">{{ collection.owner }}</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="item" *ngFor="let video of collection.videos">
+            <div class="thumb">
+                <img [src]="video.thumbImg">
+            </div>
+            <div class="title">
+                {{ video.title }}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mask">
+            <img class="arrow" src="../../../assets/icons/angle-right.svg">
+    </div>
+
+</div>

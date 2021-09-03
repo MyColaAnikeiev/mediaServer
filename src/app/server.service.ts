@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators'
 import { GeneralFilterI } from './dataTypes/ServerServiceFilterInterfaces';
-import { GeneralDataI, VideoDataI } from './dataTypes/ServiceDataInterfaces';
-import { dummyData } from './dumyServerData';
+import { GeneralDataI, VideoCollectionsDataI, VideoDataI } from './dataTypes/ServiceDataInterfaces';
+import { dummyData, dummyVideoCollections } from './dumyServerData';
 import { VideoI } from './dataTypes/videos-interface';
 
 
@@ -20,7 +20,7 @@ export class ServerService {
 
     let data = dummyData.slice(page * itemsInPage, (page+1)*itemsInPage);
 
-    return of({pages, data}).pipe( delay(50) )
+    return of({number: dummyData.length ,pages, data}).pipe( delay(50) )
   }
 
   getAllFiltered(filter: GeneralFilterI, page=0, itemsInPage = 10): Observable<GeneralDataI>{
@@ -54,7 +54,7 @@ export class ServerService {
 
     let pages = Math.ceil(filtered.length / itemsInPage);
     let data = filtered.slice(page*itemsInPage, (page+1)*itemsInPage);
-    return of({pages,data}).pipe(delay(50));
+    return of({number: filtered.length,pages,data}).pipe(delay(50));
   }
 
 
@@ -74,7 +74,17 @@ export class ServerService {
       <any>(!!(videos.length % itemsInPage));
     videos = videos.splice(page * itemsInPage, itemsInPage);
 
-    return of({pages, data:videos}).pipe( delay(50) )
+    return of({number:videos.length ,pages, data:videos}).pipe( delay(50) )
+  }
+
+  getVideoCollections(page=0, itemsInPage = 8): Observable<VideoCollectionsDataI>{
+    let collections = dummyVideoCollections;
+
+    let number = collections.length;
+    let pages = Math.ceil(number / itemsInPage);
+    let data = collections.slice(itemsInPage*page, itemsInPage*(page+1));
+
+    return of({number, pages, data}).pipe( delay(50));
   }
 
 }

@@ -25,7 +25,6 @@ import { HomeRoutingModule } from "./home.routing.module";
         HomeRoutingModule
     ],
     exports: [
-        HomePageComponent
     ]
 })
 export class HomeModule{

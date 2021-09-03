@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { VideoCollectionsDataI } from 'src/app/dataTypes/ServiceDataInterfaces';
+import { ServerService } from 'src/app/server.service';
+import { VideoPlayerComponent } from 'src/app/shared/widgets/video-player/video-player.component';
 
 @Component({
   selector: 'app-videos-page-collections-tab',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideosPageCollectionsTabComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild("videoPlayer") player!: VideoPlayerComponent;
+  
+  collections: VideoCollectionsDataI = {number: 0, pages: 0, data: []};
+  subscripion!: Subscription;
+
+  constructor(private server: ServerService) { }
 
   ngOnInit(): void {
+    this.subscripion = this.server.getVideoCollections()
+      .subscribe(this.getServerSubscribers())
+  }
+
+  getServerSubscribers(){
+    return {
+      next: (res: VideoCollectionsDataI) => {
+        this.collections = res;
+      }
+    }
   }
 
 }

@@ -1,0 +1,119 @@
+.item-container{
+    position:relative;
+    display: flex;
+    padding: 6px 7px;
+    background-image: linear-gradient(165deg, #6b23232b 10px,#30473278 100px, #0000 200px);
+    border: #282626 1px solid;
+    border-radius: 7px;
+    height: 110px;
+    overflow: hidden;
+
+    .details{
+        width: 260px;
+        padding: 0px 10px 3px 10px;
+        flex: 0 0 auto;
+
+        .title{
+            h3{
+                margin: 2px;
+            }
+        }
+
+        .number{
+            background-color: black;
+            border: black 1px solid;
+            padding: 0 10px;
+
+            .label{
+                color:rgb(221, 221, 221);
+                font-size: 16px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+        }
+
+        .author{
+            margin-top: 5px;
+            padding: 1px 5px;
+            background-color: #7558582b;
+
+            .label{
+                color: #d4d7a7;
+            }
+
+            .username{
+                padding-left: 5px;
+                color: #ecae37;
+            }
+        }
+
+    }
+
+    .content{
+        display: flex;
+
+        .item{
+            margin-right: 10px;
+            position:relative;
+            width: 180px;
+            height: 110px;
+            background-color: rgb(49, 49, 49);
+            box-shadow: #151514 3px -2px 2px;
+
+            .thumb{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                vertical-align: middle;
+                justify-content: center;
+                
+
+                img{
+                    //width: 100%;
+                    max-width: 100%;
+                    max-height: 120px
+                }
+            }
+
+            .title{
+                position: absolute;
+                bottom: 20px;
+                left:7%;
+                width:86%;
+                background-color: rgba(0, 0, 0, 0.205);
+                text-align: center;
+            }
+        }
+
+    }
+
+    .mask{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 140px;
+        height: 100%;
+        background-image: linear-gradient(to right, #0000 0, #1a1919cc 71px, #1a1919 119px);
+
+        .arrow{
+            position: absolute;
+            width: 25px;
+            height: 38px;
+            top: 38px;
+            right: 14px;
+            background-image: linear-gradient(#0000, #b9a8a8, #0000);
+            opacity: 0.0;
+            transform: translateX(25px);
+            cursor: pointer;
+            transition: opacity 0.15s, transform 0.2s;
+        }
+        .arrow:active{
+            background-image: linear-gradient(#625f5f, #0000, #686868);
+        }
+    }
+    .mask:hover{
+        .arrow{
+            opacity: 1.0;
+            transform: translateX(0px);
+        }
+    }
+}
