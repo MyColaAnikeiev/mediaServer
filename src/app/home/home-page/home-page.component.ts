@@ -121,16 +121,18 @@ export class HomePageComponent implements OnInit {
     this.currentPage = page;
 
     if(this.filterEmpty(this.currentFilter)){
-      this.router.navigate(this.route.snapshot.url,{
-        queryParams: {page}
+      this.router.navigate([],{
+        queryParams: {page},
+        relativeTo: this.route
       })
     }else{
-      this.router.navigate(this.route.snapshot.url, {
+      this.router.navigate([], {
         queryParams: {
           search: 'on',
           page,
           ...this.currentFilter
-        }
+        },
+        relativeTo: this.route
       })
     }
 
