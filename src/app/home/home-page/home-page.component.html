@@ -11,9 +11,9 @@
         <div class="navigation-panel">
                 <div class="page-navigation" 
                     [padding]="300" 
-                    [pages]="numOfPages"
                     [currentPage]="currentPage"
-                    (currentPageChange)="pageChange($event)"
+                    (pageChange)="pageChange($event)"
+                    [pages]="numOfPages"
                 ></div>
 
                 <div class="quick-info">Lastly Added</div>

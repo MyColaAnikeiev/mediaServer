@@ -6,9 +6,9 @@
 
 <div class="navigation-upper">
     <div class="page-navigation" 
-        [(currentPage)]="currentPage" 
-        (currentPageChange)="pageChange($event)"
         [pages]="numOfPages"
+        [currentPage]="currentPage"
+        (pageChange)="pageChange($event)"
     ></div>
 </div>
 
@@ -18,8 +18,8 @@
 
 <div class="navigation-bottom">
     <div class="page-navigation" 
-        [(currentPage)]="currentPage" 
-        (currentPageChange)="pageChange($event)"
         [pages]="numOfPages"
+        [currentPage]="currentPage"
+        (pageChange)="pageChange($event)"
     ></div>
 </div>

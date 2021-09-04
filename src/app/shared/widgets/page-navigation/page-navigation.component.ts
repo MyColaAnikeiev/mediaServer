@@ -1,4 +1,8 @@
-import { Component, OnInit, Input, SimpleChange, HostListener, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange, HostListener, ElementRef, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: '.page-navigation',
@@ -9,15 +13,19 @@ export class PageNavigationComponent implements OnInit {
 
   @Input('pages') numOfPages = 0;
   @Input() padding = 10;
-  @Input()  currentPage = 1;
-  @Output() currentPageChange = new EventEmitter<number>();
+  @Input() currentPage = 1;
+  @Output("pageChange") currentPageChange = new EventEmitter<number>();
   maxDisplayedPages = 12;
   pages: number[] = [];
   onResizeFunction!: Function;
+  paramsSubscriber!: Subscription;
 
-
-  constructor(private element: ElementRef) {
-  }
+  constructor(
+    private element: ElementRef,
+    private router: Router , 
+    private route: ActivatedRoute
+  ) 
+  { }
 
   ngOnChanges(ch: SimpleChange){
     if('currentPage' in ch || 'numOfPages' in ch){
@@ -38,15 +46,28 @@ export class PageNavigationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.paramsSubscriber = this.route
+      .queryParams.pipe().subscribe((params) => {
+
+        if(params.hasOwnProperty("page")){
+          let pageParam = parseInt(params.page);
+          
+          if(isNaN(pageParam) || pageParam < 1 ){
+            return;
+          }
+          
+          this.currentPage = pageParam;
+        }
+    })
+
     this.windowResize();
   }
 
   selectPage(pNum: number){
-    if(pNum < 1 || pNum == this.currentPage)
+    if(pNum < 1 || pNum == this.currentPage){
       return;
+    }
 
-    this.currentPage = pNum;
-    this.placePages();
     this.currentPageChange.emit(pNum);
   }
 

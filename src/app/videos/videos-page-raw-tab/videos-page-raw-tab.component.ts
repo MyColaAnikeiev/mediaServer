@@ -28,9 +28,11 @@ export class VideosPageRawTabComponent implements OnInit {
   pageChange(pageNum: number){
     if(pageNum > this.numOfPages)
       pageNum = this.numOfPages;
+
+    this.currentPage = pageNum;
     
     this.subscription.unsubscribe();
-    this.subscription = this.server.getVideos(pageNum - 1)
+    this.subscription = this.server.getVideos(pageNum)
       .subscribe(<any>this.getDataHandler());
   }
 

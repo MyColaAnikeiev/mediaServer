@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { debounceTime, delay, distinct } from 'rxjs/operators';
+import { debounceTime, distinct } from 'rxjs/operators';
 import { GeneralFilterI } from 'src/app/shared/interfaces/ServerServiceFilterInterfaces';
 import { formatTypeTree } from 'src/app/formatTypeTree';
 import { EventEmitter } from '@angular/core';
@@ -41,8 +41,6 @@ export class HomeSearchFilterComponent implements OnInit, OnChanges {
       if(!f)
         return;
 
-      console.log('ngOnChanges ', f)
-
       this.nameValue = f.name;
       this.currentType = f.type;
       this.formats = (<any>this.formatToType)[f.type];
@@ -51,12 +49,10 @@ export class HomeSearchFilterComponent implements OnInit, OnChanges {
   }
 
   inputName(input: HTMLInputElement){
-    console.log('inputName')
     this.nameValue = input.value;
     this.sendChanges();
   }
   inputType(select: HTMLSelectElement){
-    console.log('inputType')
     this.currentType = select.value;
     this.currentFormat = 'all';
     this.formats = (<any>this.formatToType)[this.currentType];
@@ -64,7 +60,6 @@ export class HomeSearchFilterComponent implements OnInit, OnChanges {
     this.sendChanges();
   }
   inputFormat(select: HTMLSelectElement){
-    console.log('inputFormat')
     this.currentFormat = select.value;
 
     this.sendChanges();

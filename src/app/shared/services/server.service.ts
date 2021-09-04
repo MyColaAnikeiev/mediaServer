@@ -15,7 +15,9 @@ export class ServerService {
   constructor() { }
 
 
-  getAll(page=0, itemsInPage = 10): Observable<GeneralDataI>{
+  getAll(page=1, itemsInPage = 10): Observable<GeneralDataI>{
+    page--;
+
     let pages: number = Math.ceil(dummyData.length / itemsInPage);
 
     let data = dummyData.slice(page * itemsInPage, (page+1)*itemsInPage);
@@ -23,7 +25,8 @@ export class ServerService {
     return of({number: dummyData.length ,pages, data}).pipe( delay(50) )
   }
 
-  getAllFiltered(filter: GeneralFilterI, page=0, itemsInPage = 10): Observable<GeneralDataI>{
+  getAllFiltered(filter: GeneralFilterI, page=1, itemsInPage = 10): Observable<GeneralDataI>{
+    page--;
 
     let filtered = dummyData.filter(item => {
       let fits = true;
@@ -58,7 +61,9 @@ export class ServerService {
   }
 
 
-  getVideos(page=0, itemsInPage = 6): Observable<VideoDataI>{
+  getVideos(page=1, itemsInPage = 6): Observable<VideoDataI>{
+    page--;
+
     let videos = dummyData
       .filter(item => item.filetype == 'video')
       .map((item) : VideoI => {
@@ -77,7 +82,9 @@ export class ServerService {
     return of({number:videos.length ,pages, data:videos}).pipe( delay(50) )
   }
 
-  getVideoCollections(page=0, itemsInPage = 8): Observable<VideoCollectionsDataI>{
+  getVideoCollections(page=1, itemsInPage = 8): Observable<VideoCollectionsDataI>{
+    page--;
+
     let collections = dummyVideoCollections;
 
     let number = collections.length;
