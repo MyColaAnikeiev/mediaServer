@@ -94,7 +94,9 @@ export class HomePageComponent implements OnInit {
 
     }
 
-    return {next}
+    this.queryParamHandler = {next};
+
+    return this.queryParamHandler;
   }
 
   getDataHendlers(){
