@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VideosPageContentComponent } from './videos-page-raw-content.component';
+import { VideosPageContentComponent } from './videos-page-content.component';
 
 describe('VideosPageContentComponent', () => {
   let component: VideosPageContentComponent;

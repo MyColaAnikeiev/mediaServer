@@ -2,7 +2,7 @@
 
     <div class="details">
         <div class="title">
-            <h3>{{ collection.title }}</h3>
+            <h3 routerLink="{{ collection.id }}" >{{ collection.title }}</h3>
         </div>
         <div class="number">
             <span class="label">videos:</span> 
@@ -27,7 +27,10 @@
     </div>
 
     <div class="mask">
-            <img class="arrow" src="../../../assets/icons/angle-right.svg">
+            <img routerLink="{{ collection.id }}" 
+                class="arrow" 
+                src="../../../assets/icons/angle-right.svg"
+            >
     </div>
 
 </div>

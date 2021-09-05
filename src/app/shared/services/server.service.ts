@@ -5,6 +5,7 @@ import { GeneralFilterI } from '../interfaces/ServerServiceFilterInterfaces';
 import { GeneralDataI, VideoCollectionsDataI, VideoDataI } from '../interfaces/ServiceDataInterfaces';
 import { dummyData, dummyVideoCollections } from '../../dumyServerData';
 import { VideoI } from '../interfaces/videos-interface';
+import { VideoCollectionI } from '../interfaces/video-collection-interface';
 
 
 @Injectable({
@@ -92,6 +93,13 @@ export class ServerService {
     let data = collections.slice(itemsInPage*page, itemsInPage*(page+1));
 
     return of({number, pages, data}).pipe( delay(50));
+  }
+
+  getVideoCollection(id: number): Observable<VideoCollectionI | undefined>{
+    let collections = dummyVideoCollections;
+    let collection = collections.find((coll) => coll.id == id);
+
+    return of(collection).pipe(delay(50));
   }
 
 }

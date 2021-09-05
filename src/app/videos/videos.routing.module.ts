@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { VideosPageCollectionComponent } from "./videos-page-collection/videos-page-collection.component";
 import { VideosPageCollectionsTabComponent } from "./videos-page-collections-tab/videos-page-collections-tab.component";
 import { VideosPageRawTabComponent } from "./videos-page-raw-tab/videos-page-raw-tab.component";
 import { VideosPageComponent } from "./videos-page/videos-page.component";
@@ -7,19 +8,23 @@ import { VideosPageComponent } from "./videos-page/videos-page.component";
 
 const routes: Routes = [
     {
-        path: "",
-        component: VideosPageComponent,
-        children: [
-          {
-            path: "raw",
-            component: VideosPageRawTabComponent
-          },
-          {
-            path: "collections",
-            component: VideosPageCollectionsTabComponent
-          }
-        ]
-      },
+      path: "",
+      component: VideosPageComponent,
+      children: [
+        {
+          path: "raw",
+          component: VideosPageRawTabComponent
+        },
+        {
+          path: "collections",
+          component: VideosPageCollectionsTabComponent
+        },
+      ]
+    },
+    {
+      path: "collections/:id",
+      component: VideosPageCollectionComponent
+    }
 ];
 
 @NgModule({

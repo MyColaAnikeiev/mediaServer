@@ -278,12 +278,14 @@ function toVideoI(item: Item): VideoI{
 
 export let dummyVideoCollections: VideoCollectionI[] = [
     {
+        id: 0,
         title: "Nature",
         number: 4,
         owner: "ObiVanDarkholm",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
+        id: 1,
         title: "SomeMusic",
         number: 1,
         owner: "ObiVanDarkholm",
@@ -291,76 +293,90 @@ export let dummyVideoCollections: VideoCollectionI[] = [
     },
 
     // Copy
+    
     {
+        id: 2,
         title: "Nature",
         number: 4,
         owner: "ObiVanDarkholm",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
+        id: 3,
         title: "SomeMusic",
         number: 1,
         owner: "ObiVanDarkholm",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
+        id: 4,
         title: "Nature",
         number: 4,
         owner: "ObiVanDarkholm",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
+        id: 5,
         title: "SomeMusic",
         number: 1,
         owner: "ObiVanDarkholm",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
+        id: 6,
         title: "Nature",
         number: 4,
         owner: "ObiVanDarkholm",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
+        id: 7,
         title: "SomeMusic",
         number: 1,
         owner: "ObiVanDarkholm",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
+        id: 8,
         title: "Nature",
         number: 4,
         owner: "ObiVanDarkholm",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
+        id: 9,
         title: "SomeMusic",
         number: 1,
         owner: "ObiVanDarkholm",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
+        id: 10,
         title: "Nature",
         number: 4,
         owner: "ObiVanDarkholm",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
+        id: 11,
         title: "SomeMusic",
         number: 1,
         owner: "ObiVanDarkholm",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
+        id: 12,
         title: "Nature",
         number: 4,
         owner: "ObiVanDarkholm",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
+        id: 13,
         title: "SomeMusic",
         number: 1,
         owner: "ObiVanDarkholm",
         videos: [dummyData[6]].map(toVideoI)
     }
+
 ];
