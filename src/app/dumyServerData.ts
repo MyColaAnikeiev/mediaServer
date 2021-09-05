@@ -281,14 +281,14 @@ export let dummyVideoCollections: VideoCollectionI[] = [
         id: 0,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
         id: 1,
-        title: "SomeMusic",
+        title: "Some Music",
         number: 1,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[6]].map(toVideoI)
     },
 
@@ -298,12 +298,12 @@ export let dummyVideoCollections: VideoCollectionI[] = [
         id: 2,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
         id: 3,
-        title: "SomeMusic",
+        title: "Some Music and Very long long name",
         number: 1,
         owner: "ObiVanDarkholm",
         videos: [dummyData[6]].map(toVideoI)
@@ -312,7 +312,7 @@ export let dummyVideoCollections: VideoCollectionI[] = [
         id: 4,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
