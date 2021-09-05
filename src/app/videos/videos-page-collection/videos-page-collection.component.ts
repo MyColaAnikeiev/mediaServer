@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { VideoCollectionI } from 'src/app/shared/interfaces/video-collection-interface';
 import { VideoI } from 'src/app/shared/interfaces/videos-interface';
 import { ServerService } from 'src/app/shared/services/server.service';
 
@@ -14,6 +15,8 @@ export class VideosPageCollectionComponent implements OnInit {
   serverSubscription!: Subscription;
 
   videos: VideoI[] = [];
+  collection!: VideoCollectionI;
+  switch = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +32,7 @@ export class VideosPageCollectionComponent implements OnInit {
         this.serverSubscription = this.server.getVideoCollection(id)
           .subscribe({next: (data) => {
             if(data?.videos){
+              this.collection = data;
               this.videos = data.videos;
             }
           }})

@@ -1,0 +1,24 @@
+@mixin button{
+    .btn{
+        cursor: pointer;
+        background-color: #000;
+        border: #5a474785 1px solid;
+        margin: 0px 4px;
+        color: #7b816d;
+        padding: 4px 9px;
+        font-size: 18px;
+        border-radius: 3px;
+        box-shadow: #62695d 2px 1px 3px;
+    }
+    .btn:hover{
+        background-color: #373f3c;
+        color: #baccc4;
+        box-shadow: #62695d 2px 2px 1px;
+
+    }
+    .btn.active{
+        background-color: #1c2321;
+        color: #727272;
+        box-shadow: #34393f 2px 2px 7px;
+    }
+}
