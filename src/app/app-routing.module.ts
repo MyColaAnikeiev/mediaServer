@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DocumentPageComponent } from './documets/document-page/document-page.component';
 import { GalleryPageComponent } from './gallery/gallery-page/gallery-page.component';
-import { MusicPageComponent } from './music/music-page/music-page.component';
 import { OtherPageComponent } from './other/other-page/other-page.component';
 
 const routes: Routes = [
@@ -17,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: "music",
-    component: MusicPageComponent
+    loadChildren: () => import('./music/music.module').then(m => m.MusicModule)
   },
   {
     path: "gallery",
@@ -45,7 +44,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routeComponents = [
-  MusicPageComponent,
   GalleryPageComponent,
   DocumentPageComponent,
   OtherPageComponent

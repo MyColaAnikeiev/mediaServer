@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-music-page',
-  templateUrl: './music-page.component.html',
-  styleUrls: ['./music-page.component.scss']
+  templateUrl: './music.component.html',
+  styleUrls: ['./music.component.scss']
 })
-export class MusicPageComponent implements OnInit {
+export class MusicComponent implements OnInit {
 
   constructor() { }
 
