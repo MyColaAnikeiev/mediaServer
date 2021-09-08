@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Item } from '../../shared/interfaces/itemInterface';
+import { GeneralI } from '../../shared/interfaces/by-media-type/general-Interface';
 
 @Component({
   selector: 'app-home-media-item',
@@ -9,7 +9,7 @@ import { Item } from '../../shared/interfaces/itemInterface';
 export class HomeMediaItemComponent implements OnInit {
 
   @Output('clickedFormat') formatEmiter = new EventEmitter(); 
-  @Input() item!: Item;
+  @Input() item!: GeneralI;
   hasDuration = false;
 
   constructor() { }

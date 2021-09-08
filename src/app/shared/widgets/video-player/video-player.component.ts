@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { VideoI } from 'src/app/shared/interfaces/videos-interface';
+import { VideoI } from 'src/app/shared/interfaces/by-media-type/videos-interface';
 
 @Component({
   selector: '.video-player',
@@ -29,8 +29,6 @@ export class VideoPlayerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.player)
-    console.log(this.playerMask)
   }
 
   play(video: VideoI){

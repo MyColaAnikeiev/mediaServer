@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { VideoI } from 'src/app/shared/interfaces/videos-interface';
+import { VideoI } from 'src/app/shared/interfaces/by-media-type/videos-interface';
 import { VideoPlayerComponent } from 'src/app/shared/widgets/video-player/video-player.component';
 
 @Component({

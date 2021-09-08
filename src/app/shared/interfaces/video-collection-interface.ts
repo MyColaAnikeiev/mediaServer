@@ -1,4 +1,4 @@
-import { VideoI } from "./videos-interface";
+import { VideoI } from "./by-media-type/videos-interface";
 
 export interface VideoCollectionI{
     id: number;

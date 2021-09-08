@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { VideoCollectionI } from 'src/app/shared/interfaces/video-collection-interface';
-import { VideoI } from 'src/app/shared/interfaces/videos-interface';
+import { VideoI } from 'src/app/shared/interfaces/by-media-type/videos-interface';
 import { ServerService } from 'src/app/shared/services/server.service';
 
 @Component({

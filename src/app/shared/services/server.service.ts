@@ -4,7 +4,7 @@ import { delay, map } from 'rxjs/operators'
 import { GeneralFilterI } from '../interfaces/ServerServiceFilterInterfaces';
 import { GeneralDataI, VideoCollectionsDataI, VideoDataI } from '../interfaces/ServiceDataInterfaces';
 import { dummyData, dummyVideoCollections } from '../../dumyServerData';
-import { VideoI } from '../interfaces/videos-interface';
+import { VideoI } from '../interfaces/by-media-type/videos-interface';
 import { VideoCollectionI } from '../interfaces/video-collection-interface';
 
 

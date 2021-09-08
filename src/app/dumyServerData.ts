@@ -1,8 +1,8 @@
-import { Item } from "./shared/interfaces/itemInterface";
+import { GeneralI } from "./shared/interfaces/by-media-type/general-Interface";
 import { VideoCollectionI } from "./shared/interfaces/video-collection-interface";
-import { VideoI } from "./shared/interfaces/videos-interface";
+import { VideoI } from "./shared/interfaces/by-media-type/videos-interface";
 
-export let dummyData: Item[] = [
+export let dummyData: GeneralI[] = [
     {
       filetype: "music",
       format: "mp3",
@@ -267,7 +267,7 @@ export let dummyData: Item[] = [
   ];
 
 
-function toVideoI(item: Item): VideoI{
+function toVideoI(item: GeneralI): VideoI{
     return {
         filename: item.filename,
         title: item.metadata ? item.metadata.title : item.filename,
@@ -305,42 +305,42 @@ export let dummyVideoCollections: VideoCollectionI[] = [
         id: 3,
         title: "Some Music and Very long long name",
         number: 1,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
         id: 4,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholme",
+        owner: "ObiVanDarkholmee",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
         id: 5,
         title: "SomeMusic",
         number: 1,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
         id: 6,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
         id: 7,
         title: "SomeMusic",
         number: 1,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
         id: 8,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
@@ -354,28 +354,28 @@ export let dummyVideoCollections: VideoCollectionI[] = [
         id: 10,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
         id: 11,
         title: "SomeMusic",
         number: 1,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[6]].map(toVideoI)
     },
     {
         id: 12,
         title: "Nature",
         number: 4,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[7], dummyData[9], dummyData[10], dummyData[11]].map(toVideoI)
     },
     {
         id: 13,
         title: "SomeMusic",
         number: 1,
-        owner: "ObiVanDarkholm",
+        owner: "ObiVanDarkholme",
         videos: [dummyData[6]].map(toVideoI)
     }
 

@@ -4,7 +4,7 @@ type Metadata ={
     duration: null | number
 }
 
-export interface Item{
+export interface GeneralI{
     filetype: string,
     format: string,
     filename: string,

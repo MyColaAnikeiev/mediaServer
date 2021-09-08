@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { GeneralFilterI } from '../../shared/interfaces/ServerServiceFilterInterfaces';
 import { GeneralDataI } from '../../shared/interfaces/ServiceDataInterfaces';
-import { Item } from '../../shared/interfaces/itemInterface';
+import { GeneralI } from '../../shared/interfaces/by-media-type/general-Interface';
 import { ServerService } from 'src/app/shared/services/server.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
 export class HomePageComponent implements OnInit {
 
   searchOn = false;
-  items: Item[] = [];
+  items: GeneralI[] = [];
 
   filterStreamSubscription!: Subscription;
   currentFilter: GeneralFilterI = {name:'',type:'',format:''};
@@ -157,7 +157,7 @@ export class HomePageComponent implements OnInit {
     }); 
   }
 
-  serearchByFormat(item: Item){
+  serearchByFormat(item: GeneralI){
     this.currentFilter = {
       name: '',
       type: item.filetype,
