@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <div class="container">
+        <div class="filter"></div>
+    </div>
+</div>
+
+<div class="navigation-upper">
+    <div class="page-navigation" 
+        [pages]="numOfPages"
+        [currentPage]="currentPage"
+        (pageChange)="pageChange($event)"
+    ></div>
+</div>
+
+<app-videos-content 
+    [videos]="videos"
+></app-videos-content>
+
+<div class="navigation-bottom">
+    <div class="page-navigation" 
+        [pages]="numOfPages"
+        [currentPage]="currentPage"
+        (pageChange)="pageChange($event)"
+    ></div>
+</div>

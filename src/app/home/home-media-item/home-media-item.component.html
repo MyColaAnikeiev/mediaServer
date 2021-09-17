@@ -22,7 +22,10 @@
             <p class="label">
                 name:
             </p>
-            <p class="item-name">
+            <p 
+                class="item-name"
+                title="{{ item.filename }}"
+            >
                 {{ item.filename | maxlen:22 }}
             </p>
         </div>
@@ -30,18 +33,28 @@
         <div class="metadata" *ngSwitchCase="'metadata'">
             <div class="metadata-row">
                 <div class="left">
-                <span class="label">author:</span>
+                    <span class="label">author:</span>
                 </div>
                 <div class="right">
-                <span class="text">{{ item.metadata?.author | maxlen:16 }}</span>
+                    <span 
+                        class="text"
+                        title="{{ item.metadata?.author }}"
+                    >
+                        {{ item.metadata?.author | maxlen:16 }}
+                    </span>
                 </div>
             </div>
             <div class="metadata-row">
                 <div class="left">
-                <span class="label">title:</span>
+                    <span class="label">title:</span>
                 </div>
                 <div class="right">
-                <span class="text">{{ item.metadata?.title | maxlen:16 }}</span>
+                    <span 
+                        class="text"
+                        title="{{ item.metadata?.title }}"
+                    >
+                        {{ item.metadata?.title | maxlen:16 }}
+                    </span>
                 </div>
             </div>
         </div>

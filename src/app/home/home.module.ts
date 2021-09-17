@@ -1,30 +1,29 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { DurationPipe } from "./pipes/duration.pipe";
-import { MaxlenPipe } from "src/app/shared/pipes/maxlen.pipe";
-import { WidgetsModule } from "../shared/widgets/widgets.module";
 import { HomeMediaItemComponent } from "./home-media-item/home-media-item.component";
-import { HomePageComponent } from "./home-page/home-page.component";
-import { HomeSearchFilterComponent } from "./home-page/home-search-filter/home-search-filter.component";
-import { HomeRoutingModule } from "./home.routing.module";
+import { HomeSearchFilterComponent } from "./home-search-filter/home-search-filter.component";
+import { HomeRoutingModule, routerComponents } from "./home.routing.module";
+import { SharedModule } from "../shared/shared.module";
+import { TypeFormatTreeService } from "../shared/services/type-format-tree/type-format-tree.service";
 
 
 @NgModule({
     declarations: [
+        routerComponents,
         HomeMediaItemComponent,
-        HomePageComponent,
-        HomeSearchFilterComponent,
-        DurationPipe,
-        MaxlenPipe
+        HomeSearchFilterComponent
     ],
     imports: [
         CommonModule,
-        WidgetsModule,
         FormsModule,
-        HomeRoutingModule
+        HomeRoutingModule,
+        SharedModule
     ],
     exports: [
+    ],
+    providers: [
+        TypeFormatTreeService
     ]
 })
 export class HomeModule{

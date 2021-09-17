@@ -1,29 +1,29 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { VideosPageCollectionComponent } from "./videos-page-collection/videos-page-collection.component";
-import { VideosPageCollectionsTabComponent } from "./videos-page-collections-tab/videos-page-collections-tab.component";
-import { VideosPageRawTabComponent } from "./videos-page-raw-tab/videos-page-raw-tab.component";
-import { VideosPageComponent } from "./videos-page/videos-page.component";
+import { VideosCollectionComponent } from "./videos-collection/videos-collection.component";
+import { VideosCollectionsTabComponent } from "./videos-collections-tab/videos-collections-tab.component";
+import { VideosRawTabComponent } from "./videos-raw-tab/videos-raw-tab.component";
+import { VideosComponent } from "./videos.component";
 
 
 const routes: Routes = [
     {
       path: "",
-      component: VideosPageComponent,
+      component: VideosComponent,
       children: [
         {
           path: "raw",
-          component: VideosPageRawTabComponent
+          component: VideosRawTabComponent
         },
         {
           path: "collections",
-          component: VideosPageCollectionsTabComponent
+          component: VideosCollectionsTabComponent
         },
       ]
     },
     {
       path: "collections/:id",
-      component: VideosPageCollectionComponent
+      component: VideosCollectionComponent
     }
 ];
 

@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { DocumentPageComponent } from './documets/document-page/document-page.component';
-import { GalleryPageComponent } from './gallery/gallery-page/gallery-page.component';
-import { OtherPageComponent } from './other/other-page/other-page.component';
 
 const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
     redirectTo: 'home'
+  },
+  {
+    path: "home",
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
     path: "videos",
@@ -20,15 +21,15 @@ const routes: Routes = [
   },
   {
     path: "gallery",
-    component: GalleryPageComponent
+    loadChildren: () => import('./gallery/gallery.module').then(m => m.GalleryModule)
   },
   {
     path: "documents",
-    component: DocumentPageComponent
+    loadChildren: () => import("./documets/document.module").then(m => m.DocumentModule)
   },
   {
     path: "other",
-    component: OtherPageComponent
+    loadChildren: () => import('./other/other.module').then(m => m.OtherModule)
   },
   {
     path: '**',
@@ -42,9 +43,6 @@ const routes: Routes = [
   })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
-export const routeComponents = [
-  GalleryPageComponent,
-  DocumentPageComponent,
-  OtherPageComponent
-]; 
+export class AppRoutingModule {
+
+}
