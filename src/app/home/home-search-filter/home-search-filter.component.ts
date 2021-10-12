@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { debounceTime, distinct } from 'rxjs/operators';
 import { GeneralFilterI } from 'src/app/shared/interfaces/ServerServiceGeneralFilterInterfaces';
 import { EventEmitter } from '@angular/core';
@@ -15,8 +15,8 @@ export class HomeSearchFilterComponent implements OnInit, OnChanges {
   @Output('changes') emiter = new EventEmitter();
   @Input('filter') filter!: GeneralFilterI;
 
-  $changesStream!: Observable<GeneralFilterI>;
-  sendNextChange!: Function;
+  changesStream$!: Observable<GeneralFilterI>;
+  changesSubject = new Subject<GeneralFilterI>();
 
   nameValue: string = '';
   currentType: string = 'all';  
@@ -26,11 +26,12 @@ export class HomeSearchFilterComponent implements OnInit, OnChanges {
   constructor(public tree: TypeFormatTreeService) { }
 
   ngOnInit(): void {
-    this.$changesStream = (new Observable<GeneralFilterI>((observer) => {
-      this.sendNextChange = observer.next.bind(observer);
-    })).pipe(debounceTime(200), distinct())
 
-    this.emiter.emit(this.$changesStream);
+    this.changesStream$ = this.changesSubject.pipe(
+      debounceTime(200), distinct()
+    )
+
+    this.emiter.emit(this.changesStream$);
   }
 
   ngOnChanges(ch: SimpleChanges){
@@ -64,7 +65,7 @@ export class HomeSearchFilterComponent implements OnInit, OnChanges {
   }
 
   sendChanges(){
-    this.sendNextChange({
+    this.changesSubject.next({
       name: this.nameValue,
       type: this.currentType == 'all' ? '' : this.currentType,
       format: this.currentFormat == 'all' ? '' : this.currentFormat

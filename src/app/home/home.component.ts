@@ -1,117 +1,59 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Observer, Subject, Subscription } from 'rxjs';
 import { GeneralFilterI } from 'src/app/shared/interfaces/ServerServiceGeneralFilterInterfaces';
-import { GeneralDataI } from 'src/app/shared/interfaces/ServiceDataInterfaces';
 import { GeneralI } from 'src/app/shared/interfaces/by-media-type/general-Interface';
-import { ServerService } from 'src/app/shared/services/server/server.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { HomeMediaContentSercive } from './shared/services/home-media-content.service';
+import { HomeContentI } from './shared/interfaces/home-data.interface';
+import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [ HomeMediaContentSercive ]
 })
 export class HomeComponent implements OnInit {
-
-  searchOn = false;
-  items: GeneralI[] = [];
-
-  filterStreamSubscription!: Subscription;
-  currentFilter: GeneralFilterI = {name:'',type:'',format:''};
+  private unsubscribe$ = new Subject();
 
   currentPage = 1;
+  items: GeneralI[] = [];
   numOfPages: number = 0;
 
-  dataHandler!: {next: Function};
-  queryParamHandler!: {next: Function};
+  searchOn = false;
+  currentFilter: GeneralFilterI = {name:'',type:'',format:''};
 
-  serverSubscription!: Subscription;
   paramSubscription!: Subscription;
+  filterStreamSubscription!: Subscription;
 
 
   constructor(
-    private server: ServerService, 
     private router: Router, 
     private route: ActivatedRoute,
-    private location: Location
+    private mediaContent: HomeMediaContentSercive
   ) 
   { }
 
-  ngOnInit(): void {
-    this.paramSubscription = this.route.queryParams
-      .subscribe(<any>this.getQueryParamHandler())
+  ngOnInit(){
+    this.mediaContent.getContent().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(this.getContentHandler());
   }
 
-
-  getQueryParamHandler(){
-    if(this.queryParamHandler){
-      return this.queryParamHandler;
-    }
-
-
-    const next = (params : any) =>  {
-
-      if(params.hasOwnProperty("search")){
-        this.currentFilter.name = params.name ? params.name : '';
-        this.currentFilter.type = params.type ? params.type : '';
-        this.currentFilter.format = params.format ? params.format : '';
-        
-        let page = 1;
-        if(params.hasOwnProperty("page")){
-          page = parseInt(params.page);
-          if(isNaN(page) || page < 1){
-            page = 1;
-          } 
-        }
-
-        this.searchOn = true;
-        this.serverSubscription = this.server.getAllFiltered(this.currentFilter, page)
-          .subscribe(<any>this.getDataHendlers());
-
-        return;
+  getContentHandler(): Observer<HomeContentI>{
+    return {
+        next: (content: HomeContentI) => {
+          this.currentPage = content.page;
+          this.currentFilter = content.filter;
+          this.numOfPages = content.responce.pages;
+          this.items = content.responce.data;
+          this.searchOn = !this.filterEmpty(this.currentFilter);
+        },
+        complete: () => {},
+        error: () => {}
       }
-      
-      if(params.hasOwnProperty("page")){
-        let page = parseInt(params.page);
-
-        if(!isNaN(page) && page > 0){          
-          this.currentPage = page;
-
-          this.serverSubscription = this.server.getAll(page)
-            .subscribe(<any>this.getDataHendlers());
-
-          return;
-        }
-
-        // Clear incorrect query params
-        this.location.go(this.route.snapshot.url.join('/'));
-      } 
-
-      // If there is no parameters or they are incorrect
-      this.serverSubscription = this.server.getAll()
-          .subscribe(<any>this.getDataHendlers());
-
-    }
-
-    this.queryParamHandler = {next};
-
-    return this.queryParamHandler;
   }
-
-  getDataHendlers(){
-    if(!this.dataHandler){
-      this.dataHandler = {
-        next: (response: GeneralDataI) => {
-          this.numOfPages = response.pages;
-          this.items = response.data;
-        }
-      }
-    }
-
-    return this.dataHandler;
-  }
-
   
   pageChange(page: number){
     if(page < 1){ 
@@ -138,8 +80,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-
-  searchBtnToggle(){
+  searchBtnToggle(): void{
     this.searchOn = !this.searchOn;
 
     if(!this.searchOn){
@@ -148,7 +89,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  setFilterStream(stream: Observable<GeneralFilterI>){
+  setFilterStream(stream: Observable<GeneralFilterI>): void{
     this.filterStreamSubscription = stream.subscribe({
       next: (filter) => {
         this.currentFilter = filter;
@@ -157,7 +98,7 @@ export class HomeComponent implements OnInit {
     }); 
   }
 
-  serearchByFormat(item: GeneralI){
+  serearchByFormat(item: GeneralI): void{
     this.currentFilter = {
       name: '',
       type: item.filetype,
@@ -170,13 +111,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.serverSubscription.unsubscribe();
     this.filterStreamSubscription?.unsubscribe();
-    this.paramSubscription.unsubscribe();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
-  filterEmpty(filter: GeneralFilterI){
-    if((filter.name == '') && (filter.type == '') && (filter.format == '')){
+  filterEmpty(filter: GeneralFilterI): boolean{
+    if(filter.name == '' && filter.type == '' && filter.format == ''){
       return true;
     }
 
