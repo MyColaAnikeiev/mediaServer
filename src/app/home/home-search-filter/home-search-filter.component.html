@@ -1,22 +1,33 @@
 <div class="search-form">
 
     <div class="search-form-row">
+
         <div class="name-field">
             <div class="label">name:</div> 
-            <input type="text" [value]="nameValue" (input)="inputName(nameInput)" #nameInput>
+            <input type="text" [value]="name$ | async" (input)="inputName(nameInput)" #nameInput>
         </div>
+
         <div class="type-field">
             <div class="label">type: </div>
-            <select [ngModel]="currentType" (input)="inputType(typeSelect)"  #typeSelect>
-                <option *ngFor="let type of tree.getTypes()" >{{ type }}</option>
+            <select [value]="type$ | async" (input)="inputType(typeSelect)"  #typeSelect>
+                <option *ngFor="let type of formatTree.getTypes()" >{{ type }}</option>
             </select>
         </div>
+
         <div class="format-field">
             <div class="label">format: </div>
-            <select [ngModel]="currentFormat" (input)="inputFormat(formatSelect)" #formatSelect>
-                <option *ngFor="let format of formats">{{ format }}</option>
+            <select 
+                [value]="format$ | async" 
+                (input)="inputFormat(formatSelect)" 
+                #formatSelect
+            >
+                <option 
+                    *ngFor="let format of formatOptions$ | async"
+                >{{ format }}
+                </option>
             </select>
         </div>
+
     </div>
 
     <hr>

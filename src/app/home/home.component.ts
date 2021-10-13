@@ -6,13 +6,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HomeMediaContentSercive } from './shared/services/home-media-content.service';
 import { HomeContentI } from './shared/interfaces/home-data.interface';
 import { takeUntil } from 'rxjs/operators';
+import { HomeSearchFilterService } from './shared/services/home-search-filter.service';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [ HomeMediaContentSercive ]
+  providers: [ 
+    HomeMediaContentSercive,
+    HomeSearchFilterService
+  ]
 })
 export class HomeComponent implements OnInit {
   private unsubscribe$ = new Subject();
@@ -24,14 +28,12 @@ export class HomeComponent implements OnInit {
   searchOn = false;
   currentFilter: GeneralFilterI = {name:'',type:'',format:''};
 
-  paramSubscription!: Subscription;
-  filterStreamSubscription!: Subscription;
-
 
   constructor(
     private router: Router, 
     private route: ActivatedRoute,
-    private mediaContent: HomeMediaContentSercive
+    private mediaContent: HomeMediaContentSercive,
+    private filterService: HomeSearchFilterService
   ) 
   { }
 
@@ -39,16 +41,23 @@ export class HomeComponent implements OnInit {
     this.mediaContent.getContent().pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe(this.getContentHandler());
+
+    this.filterService.getStreamOfChanges().subscribe(filter => {
+      this.currentFilter = filter;
+      this.pageChange(1);
+    })
   }
 
   getContentHandler(): Observer<HomeContentI>{
+    console.log("getContentHandler")
     return {
         next: (content: HomeContentI) => {
+          console.log("Cotent Handler next")
           this.currentPage = content.page;
           this.currentFilter = content.filter;
           this.numOfPages = content.responce.pages;
           this.items = content.responce.data;
-          this.searchOn = !this.filterEmpty(this.currentFilter);
+          this.searchOn ||= !this.filterEmpty(this.currentFilter);
         },
         complete: () => {},
         error: () => {}
@@ -89,16 +98,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  setFilterStream(stream: Observable<GeneralFilterI>): void{
-    this.filterStreamSubscription = stream.subscribe({
-      next: (filter) => {
-        this.currentFilter = filter;
-        this.pageChange(1);
-      }
-    }); 
-  }
-
-  serearchByFormat(item: GeneralI): void{
+  searchByFormat(item: GeneralI): void{
     this.currentFilter = {
       name: '',
       type: item.filetype,
@@ -111,7 +111,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.filterStreamSubscription?.unsubscribe();
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }

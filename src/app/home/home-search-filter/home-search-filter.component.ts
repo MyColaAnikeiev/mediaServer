@@ -1,75 +1,57 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { debounceTime, distinct } from 'rxjs/operators';
-import { GeneralFilterI } from 'src/app/shared/interfaces/ServerServiceGeneralFilterInterfaces';
-import { EventEmitter } from '@angular/core';
+import { Component, OnInit   } from '@angular/core';
+import { Observable } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 import { TypeFormatTreeService } from 'src/app/shared/services/type-format-tree/type-format-tree.service';
+import { HomeSearchFilterService } from '../shared/services/home-search-filter.service';
 
 @Component({
   selector: 'app-home-search-filter',
   templateUrl: './home-search-filter.component.html',
   styleUrls: ['./home-search-filter.component.scss']
 })
-export class HomeSearchFilterComponent implements OnInit, OnChanges {
-  
-  @Output('changes') emiter = new EventEmitter();
-  @Input('filter') filter!: GeneralFilterI;
+export class HomeSearchFilterComponent implements OnInit {
 
-  changesStream$!: Observable<GeneralFilterI>;
-  changesSubject = new Subject<GeneralFilterI>();
+  name$ : Observable<string>;
+  type$ : Observable<string>;
+  format$ : Observable<string>;
+  formatOptions$: Observable<string[]>;
 
-  nameValue: string = '';
-  currentType: string = 'all';  
-  formats: string[] = [];
-  currentFormat = 'all';
-
-  constructor(public tree: TypeFormatTreeService) { }
-
-  ngOnInit(): void {
-
-    this.changesStream$ = this.changesSubject.pipe(
-      debounceTime(200), distinct()
+  constructor(
+    public filterService: HomeSearchFilterService,
+    public formatTree: TypeFormatTreeService,
+  ){
+    const filter$ = this.getFilter();
+    this.name$ = filter$.pipe(
+      map(f => f.name)
     )
-
-    this.emiter.emit(this.changesStream$);
+    this.type$ = filter$.pipe(
+      map(f => f.type ? f.type : 'all' )
+    )
+    this.format$ = filter$.pipe(
+      map(f => f.format ? f.format : 'all'), 
+      delay(0)
+    )
+    this.formatOptions$ = this.type$.pipe(
+      map(type => this.formatTree.getFormats(type)
+    ))
   }
 
-  ngOnChanges(ch: SimpleChanges){
-    if('filter' in ch){
-      const f = ch.filter.currentValue;
-      if(!f)
-        return;
 
-      this.nameValue = f.name;
-      this.currentType = f.type;
-      this.formats = this.tree.getFormats(f.type)
-      this.currentFormat = f.format;
-    }
+  ngOnInit(): void {
+  }
+
+  getFilter(){
+    return this.filterService.getStream();
   }
 
   inputName(input: HTMLInputElement){
-    this.nameValue = input.value;
-    this.sendChanges();
+    this.filterService.updateName(input.value);
   }
   inputType(select: HTMLSelectElement){
-    this.currentType = select.value;
-    this.currentFormat = 'all';
-    this.formats = this.tree.getFormats(this.currentType)
-
-    this.sendChanges();
+    this.filterService.updateType(select.value);
   }
   inputFormat(select: HTMLSelectElement){
-    this.currentFormat = select.value;
-
-    this.sendChanges();
-  }
-
-  sendChanges(){
-    this.changesSubject.next({
-      name: this.nameValue,
-      type: this.currentType == 'all' ? '' : this.currentType,
-      format: this.currentFormat == 'all' ? '' : this.currentFormat
-    })
+    this.filterService.updateFormat(select.value);
   }
 
 }

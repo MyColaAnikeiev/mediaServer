@@ -15,6 +15,6 @@ export class TypeFormatTreeService{
             return this.formatTypeTree[type];
         }
 
-        return [];
+        return ['all'];
     }
 }

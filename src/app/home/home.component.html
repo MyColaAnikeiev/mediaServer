@@ -2,11 +2,7 @@
     
     <div class="panels">
 
-        <app-home-search-filter 
-            *ngIf="searchOn"
-            (changes)="setFilterStream($event)"
-            [filter]="currentFilter"
-        ></app-home-search-filter>
+        <app-home-search-filter *ngIf="searchOn"></app-home-search-filter>
 
         <div class="navigation-panel">
                 <div class="page-navigation" 
@@ -36,7 +32,7 @@
         <app-home-media-item 
             *ngFor="let item of items" 
             [item]="item"
-            (clickedFormat)="serearchByFormat($event)"
+            (clickedFormat)="searchByFormat($event)"
         ></app-home-media-item>
     </div>
 </div>

@@ -6,12 +6,14 @@ import { GeneralFilterI } from "src/app/shared/interfaces/ServerServiceGeneralFi
 import { GeneralDataI } from "src/app/shared/interfaces/ServiceDataInterfaces";
 import { ServerService } from "src/app/shared/services/server/server.service";
 import { HomeContentI } from "../interfaces/home-data.interface";
+import { HomeSearchFilterService } from "./home-search-filter.service";
 
 @Injectable()
 export class HomeMediaContentSercive{
     constructor(
         private route: ActivatedRoute,
-        private server: ServerService
+        private server: ServerService,
+        private filterService: HomeSearchFilterService
     ){ }
 
     getContent(): Observable<HomeContentI>{
@@ -21,6 +23,8 @@ export class HomeMediaContentSercive{
                 let serverData$: Observable<GeneralDataI>
                 const filter = getFilter(params)
                 const page = getPage(params)
+
+                this.filterService.setInitial(filter);
             
                 if('search' in params){
                     serverData$ = this.server.getAllFiltered(filter, page)
