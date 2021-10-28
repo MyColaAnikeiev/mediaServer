@@ -1,9 +1,8 @@
-<!--<div class="item-wrapper">-->
 <div class="item-body">
 
-    <div class="item-top" [class.thumbImage]="!thumbImageIsIcon()">
+    <div class="item-top" [class.thumbImage]="isThumb">
         <div class="item-img">
-            <img src="{{ getThumbImageUrl() }}">
+            <img [src]="imageSource">
         </div>
 
         <!---->
@@ -78,4 +77,3 @@
 
     </div>
 </div>
-<!--</div>-->

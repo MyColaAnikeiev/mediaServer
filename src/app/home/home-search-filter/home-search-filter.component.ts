@@ -1,4 +1,4 @@
-import { Component, OnInit   } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit   } from '@angular/core';
 import { Observable } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { TypeFormatTreeService } from 'src/app/shared/services/type-format-tree/type-format-tree.service';
@@ -7,7 +7,8 @@ import { HomeSearchFilterService } from '../shared/services/home-search-filter.s
 @Component({
   selector: 'app-home-search-filter',
   templateUrl: './home-search-filter.component.html',
-  styleUrls: ['./home-search-filter.component.scss']
+  styleUrls: ['./home-search-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeSearchFilterComponent implements OnInit {
 

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable, Observer, Subject, Subscription } from 'rxjs';
 import { GeneralFilterI } from 'src/app/shared/interfaces/ServerServiceGeneralFilterInterfaces';
 import { GeneralI } from 'src/app/shared/interfaces/by-media-type/general-Interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomeMediaContentSercive } from './shared/services/home-media-content.service';
 import { HomeContentI } from './shared/interfaces/home-data.interface';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { HomeSearchFilterService } from './shared/services/home-search-filter.service';
 
 
@@ -16,7 +16,8 @@ import { HomeSearchFilterService } from './shared/services/home-search-filter.se
   providers: [ 
     HomeMediaContentSercive,
     HomeSearchFilterService
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   private unsubscribe$ = new Subject();
@@ -33,12 +34,17 @@ export class HomeComponent implements OnInit {
     private router: Router, 
     private route: ActivatedRoute,
     private mediaContent: HomeMediaContentSercive,
-    private filterService: HomeSearchFilterService
+    private filterService: HomeSearchFilterService,
+    private changeDetector: ChangeDetectorRef
   ) 
   { }
 
   ngOnInit(){
+
     this.mediaContent.getContent().pipe(
+      tap(() => { 
+        this.changeDetector.markForCheck() 
+      }),
       takeUntil(this.unsubscribe$)
     ).subscribe(this.getContentHandler());
 

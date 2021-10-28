@@ -1,25 +1,34 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { GeneralI } from '../../shared/interfaces/by-media-type/general-Interface';
 
 @Component({
   selector: 'app-home-media-item',
   templateUrl: './home-media-item.component.html',
-  styleUrls: ['./home-media-item.component.scss']
+  styleUrls: ['./home-media-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeMediaItemComponent implements OnInit {
 
-  @Output('clickedFormat') formatEmiter = new EventEmitter(); 
+  @Output('clickedOnFormat') formatEmiter = new EventEmitter(); 
   @Input() item!: GeneralI;
-  hasDuration = false;
 
+  hasDuration = false;
+  imageSource!: string;
+  isThumb!: boolean;
   constructor() { }
 
   ngOnInit(): void {
-    if(typeof this.item.metadata?.duration == 'number')
+    if(typeof this.item.metadata?.duration == 'number'){
       this.hasDuration = true;
+    }
+
+    this.imageSource = this.getSourceImageUrl();
+    this.isThumb = this.isThumbImage();
   }
 
-  getThumbImageUrl(): string{
+  getSourceImageUrl(): string{
+    console.log("getThumbImageUrl")
+
     switch(this.item.filetype){
       case 'music':
         return 'assets/icons/music.png';
@@ -30,15 +39,17 @@ export class HomeMediaItemComponent implements OnInit {
     return '';
   }
 
-  thumbImageIsIcon(): boolean{
+  isThumbImage(): boolean{
+    console.log("thumbImageIsIcon");
+
     switch(this.item.filetype){
       case 'music':
-        return true;
+        return false;
       case 'image':
       case 'video':
-        return false;
+        return true;
     }
-    return true;
+    return false;
   }
 
   searchByItemFormat(){

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import {BehaviorSubject, Observable, Subject } from "rxjs";
-import { debounceTime, filter } from "rxjs/operators";
+import { debounceTime } from "rxjs/operators";
 import { GeneralFilterI } from "src/app/shared/interfaces/ServerServiceGeneralFilterInterfaces";
 
 const emptyFilter = {name: '', type: '', format: ''}

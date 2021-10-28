@@ -29,10 +29,12 @@
     </div>
 
     <div class="content-container">
+        <p *ngIf="items.length == 0" class="no-found">No found.</p>
+
         <app-home-media-item 
             *ngFor="let item of items" 
             [item]="item"
-            (clickedFormat)="searchByFormat($event)"
+            (clickedOnFormat)="searchByFormat($event)"
         ></app-home-media-item>
     </div>
 </div>
